@@ -23,7 +23,7 @@ iphone5_spkr_w = 11.96;
 iphone5_spkr_d = 2.59;
 iphone5_spkr_offset = 9.23;
 
-iphone5_headphone_plug_offset = 10.46;
+iphone5_headphone_plug_offset = 11.46;
 iphone5_hp_neg_offset = -((iphone5_width/2) - iphone5_headphone_plug_offset);
 iphone5_screen_w = 53;
 iphone5_screen_h = 90.39;
@@ -40,7 +40,6 @@ lightning_strain_relief_r = 4.1/2;
 
 // The offsets are from the left side of the device
 //
-audio_jack_center_offset = 10.46;
 audio_jack_r = 4.83 / 2;
 lightning_width = 9.05;
 lightning_edge_offset = 24.75;
@@ -64,10 +63,10 @@ block_front_h = 18;
 block_front_w = iphone5_width + (wall_thickness * 2);
 block_front_d = iphone5_depth + (wall_thickness * 2);
 
-headphone_plug_top_r = 8.3 / 2;
-headphone_plug_hex_w = 9.3;
+headphone_plug_top_r = 8.2 / 2;
+headphone_plug_hex_w = 9.2;
 headphone_plug_hex_h = 17;
-headphone_plug_top_h = 4.73;
+headphone_plug_top_h = 5.4;
 headphone_plug_h = headphone_plug_top_h + headphone_plug_hex_h - 1;
 
 /////////////////////////////////////////////////////////////////////////////
