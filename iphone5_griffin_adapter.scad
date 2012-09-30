@@ -32,7 +32,7 @@ home_button_r = 10.9 / 2;
 home_button_offset = 9.15;
 screen_cutout_h = 5;
 
-lightning_w = 8;
+lightning_w = 8.2;
 lightning_d = 5;
 lightning_h = 12;
 lightning_cable_r = 2.5/2;
@@ -59,14 +59,15 @@ block_back_h = 23;
 block_bottom_d = iphone5_depth + (wall_thickness * 2) + adapter_d;
 block_bottom_h = 25;
 
-block_front_h = 60;
+// block_front_h = 60;
+block_front_h = 18;
 block_front_w = iphone5_width + (wall_thickness * 2);
 block_front_d = iphone5_depth + (wall_thickness * 2);
 
 headphone_plug_top_r = 8.3 / 2;
 headphone_plug_hex_w = 9.3;
 headphone_plug_hex_h = 17;
-headphone_plug_top_h = 5.73;
+headphone_plug_top_h = 4.73;
 headphone_plug_h = headphone_plug_top_h + headphone_plug_hex_h - 1;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -271,17 +272,20 @@ module iphone_adapter() {
             roundRect(size = [block_front_w, block_front_d, block_front_h],
                 round = 3, center = true);
         }
-        translate( v = [0,0,block_back_h/2] ) {
-            roundRect(size = [block_back_w, block_back_d, block_back_h],
-                round = 3, center = true);
-        }
+        // translate( v = [0,0,block_back_h/2] ) {
+        //     roundRect(size = [block_back_w, block_back_d, block_back_h],
+        //         round = 3, center = true);
+        // }
     }
 
      translate( v = [0, -((block_back_d/2)+wall_thickness),iphone_from_bottom_offset]) {
         iphone5_cutout();
      }
-     translate( v= [0,1.4,-6]) {
-         vertical_car_mount();
+     // translate( v= [0,1.4,-6]) {
+     //     vertical_car_mount();
+     // }
+     translate( v = [8,-20,-1]) {
+         cube([35,20,25]);
      }
  }
 }
