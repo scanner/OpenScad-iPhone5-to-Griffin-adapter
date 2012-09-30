@@ -6,6 +6,8 @@
 //
 use <Libs.scad>;
 
+connector_test = false;
+
 padding = 0.05;
 
 dock_hitch_h = 21;
@@ -58,8 +60,13 @@ block_back_h = 23;
 block_bottom_d = iphone5_depth + (wall_thickness * 2) + adapter_d;
 block_bottom_h = 25;
 
-// block_front_h = 60;
-block_front_h = 18;
+// if (connector_test == true) {
+//     block_front_h = 18;
+// } else {
+//     block_front_h = 60;
+// }
+block_front_h = 60;
+
 block_front_w = iphone5_width + (wall_thickness * 2);
 block_front_d = iphone5_depth + (wall_thickness * 2);
 
@@ -271,20 +278,26 @@ module iphone_adapter() {
             roundRect(size = [block_front_w, block_front_d, block_front_h],
                 round = 3, center = true);
         }
-        // translate( v = [0,0,block_back_h/2] ) {
-        //     roundRect(size = [block_back_w, block_back_d, block_back_h],
-        //         round = 3, center = true);
-        // }
+        if (connector_test == false) {
+            translate( v = [0,0,block_back_h/2] ) {
+                roundRect(size = [block_back_w, block_back_d, block_back_h],
+                    round = 3, center = true);
+            }
+        }
     }
 
      translate( v = [0, -((block_back_d/2)+wall_thickness),iphone_from_bottom_offset]) {
         iphone5_cutout();
      }
-     // translate( v= [0,1.4,-6]) {
-     //     vertical_car_mount();
-     // }
-     translate( v = [8,-20,-1]) {
-         cube([35,20,25]);
+     if (connector_test == false) {
+         translate( v= [0,1.4,-6]) {
+             vertical_car_mount();
+         }
+     }
+     if (connector_test) {
+         translate( v = [8,-20,-1]) {
+             cube([35,20,25]);
+         }
      }
  }
 }
