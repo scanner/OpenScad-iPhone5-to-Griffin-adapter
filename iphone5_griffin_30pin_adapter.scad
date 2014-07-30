@@ -66,38 +66,50 @@ module iphone5_cutout() {
 /////////////////////////////////////////////////////////////////////////////
 //
 module iphone_adapter() {
-    intersection() {
-        cylinder(h = nb_h, r1 = 18, r2 = (block_front_w/2) + 12, $fn = 80);
-        difference() {
-            union() {
-                translate( v = [iphone_holder_xoff, iphone_holder_yoff, nb_h/2]) {
-                    roundRect(size = [block_front_w, block_front_d, nb_h],
-                        round = 3, center = true);
-                }
+    difference() {
+        union() {
+            translate(v=[0,17,7]) {
+                car_mount_cap();
             }
+            intersection() {
+                cylinder(h = nb_h, r1 = 18, r2 = (block_front_w/2) + 12, $fn = 80);
+                difference() {
+                    union() {
+                        translate( v = [iphone_holder_xoff,
+                                        iphone_holder_yoff, nb_h/2]) {
+                            roundRect(size = [block_front_w, block_front_d,
+                                              nb_h],
+                                      round = 3, center = true);
+                        }
+                    }
 
-            translate( v = [iphone_holder_xoff, iphone_holder_yoff, iphone_holder_zoff]) {
-                iphone5_cutout();
-            }
-            if (connector_test == false) {
-                union() {
-                    translate( v= [0,0,-6]) {
-                        vertical_car_mount();
+                    translate( v = [iphone_holder_xoff, iphone_holder_yoff,
+                                    iphone_holder_zoff]) {
+                        iphone5_cutout();
                     }
-                    translate( v = [0, 0, tp_z_offset-padding] ) {
-                        30pin_adapter();
+                    translate( v = [0,5,64] ) {
+                        cube([42, 10, 40], true);
                     }
                 }
-            }
-            if (connector_test) {
-                translate( v = [8,-20,-1]) {
-                    cube([35,20,25]);
-                }
-            }
-            translate( v = [0,5,64] ) {
-                cube([42, 10, 40], true);
             }
         }
+        if (connector_test == false) {
+            union() {
+                translate( v= [0,0,-6]) {
+                    vertical_car_mount();
+                }
+                translate( v = [0, 0, tp_z_offset-padding] ) {
+                    30pin_adapter();
+                }
+            }
+        }
+        if (connector_test) {
+            translate( v = [8,-20,-1]) {
+                cube([35,20,25]);
+            }
+        }
+        translate(v=[0,0,-20]) {
+        cube([40,80,40], center=true); }
     }
 }
 

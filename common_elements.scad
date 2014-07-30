@@ -1,3 +1,5 @@
+use <Libs.scad>;
+
 padding = 0.05;
 
 dock_hitch_h = 21;
@@ -91,6 +93,7 @@ module vertical_car_mount() {
     }
 }
 
+
 module car_mount() {
     // since all the important measurements that we want to offset from are
     // the -top- of the car mount we call that y position 0. we really do
@@ -125,12 +128,12 @@ module car_mount() {
     // the height does not matter that much...
     //
     translate(v = [0,(height/2)-9.3-connector_radius,0]) {
-        cylinder(h = 15, r = connector_radius);
+        cylinder(h = 26, r = connector_radius);
     }
-    translate(v = [0, -(connector_radius+0.9),15/2]) {
+    translate(v = [0, -(connector_radius+0.9),12]) {
         cube(size = [connector_radius * 2,
                 0.9+ (height/2) + ((height/2)-(9.3)-connector_radius),
-                15], center = true);
+                27.9], center = true);
     }
 
     // and the dimples on the left and ride sides are 18.78mm from the
@@ -143,5 +146,14 @@ module car_mount() {
         rotate([0,90,0]) {
             cylinder(h = dimple_length, r = dimple_radius, $fn = 10);
         }
+    }
+}
+
+module car_mount_cap() {
+    depth = 21;
+    height = 30;
+    connector_radius = 6.625;
+    rotate([90,0,0]) {
+        roundRect([(connector_radius*2)+6, (height/2)+6, 22], round=3, center=true);
     }
 }
