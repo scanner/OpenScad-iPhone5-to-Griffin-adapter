@@ -2,6 +2,11 @@ use <Libs.scad>;
 
 padding = 0.05;
 
+iphone6_width = 67.8;
+iphone6_length = 138.1;
+iphone6_height = 7.6;
+iphone6_radius = 9.3;
+
 dock_hitch_h = 21;
 pin30_adapter_h = 6;
 iphone5_depth = 8.1;
@@ -59,8 +64,8 @@ block_bottom_h = 25;
 // }
 block_front_h = 60;
 
-block_front_w = iphone5_width + (wall_thickness * 2);
-block_front_d = iphone5_depth + (wall_thickness * 2);
+block_front_w = iphone6_width + (wall_thickness * 2);
+block_front_d = iphone6_height + (wall_thickness * 2);
 
 headphone_plug_top_r = 8.2 / 2;
 headphone_plug_hex_w = 9.2;
