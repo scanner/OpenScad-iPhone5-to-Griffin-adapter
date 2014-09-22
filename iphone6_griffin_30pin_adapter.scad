@@ -14,7 +14,8 @@ iphone_holder_yoff = 0;
 iphone_holder_zoff = 42.5;
 
 tp_depth = 6.4;
-tp_height = 19.87;
+// tp_height = 19.87;
+tp_height = 27;
 tp_width = 26.5;
 tp_z_offset = 33;
 
@@ -113,7 +114,7 @@ module iphone_adapter() {
                     translate( v = [iphone_holder_xoff, iphone_holder_yoff,
                                     iphone_holder_zoff-1.5]) {
                         // iphone5_cutout();
-                        translate(v=[-iphone6_width/2,iphone6_height/2,0.5]) {
+                        translate(v=[-iphone6_width/2,iphone6_height/2,2]) {
                             rotate([90,0,0]) {
                                 iphone6_cutout(iphone6_width, iphone6_height,
                                                iphone6_length, iphone6_radius);
