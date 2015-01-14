@@ -4,7 +4,7 @@
 // routed by itself as well as an audio plug to pull sound out of the iphone in
 // to the car stereo's AUX in.
 //
-v="1.3";
+v="1.4";
 
 use <Libs.scad>;
 include <common_elements.scad>;
@@ -187,8 +187,8 @@ module iphone_adapter() {
 
         // And cut out the griffin lighting adapter
         //
-        translate(v=[0,0,24.5]) {
-            lightning_plug(19.5, 10.8, 6.4);
+        translate(v=[0,0,25]) {
+            lightning_plug(19.5, 10.7, 6.3);
         }
         translate(v=[0,0,-1]) {
             rotate([0,0,180]) {
