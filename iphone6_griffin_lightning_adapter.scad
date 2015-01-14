@@ -4,7 +4,7 @@
 // routed by itself as well as an audio plug to pull sound out of the iphone in
 // to the car stereo's AUX in.
 //
-v="1.1";
+v="1.3";
 
 use <Libs.scad>;
 include <common_elements.scad>;
@@ -58,6 +58,43 @@ module lightning_plug(h, w, d) {
 
 /////////////////////////////////////////////////////////////////////////////
 //
+module iphone5_cutout() {
+    union() {
+        translate(v = [0,0,iphone5_height / 2]){
+            rotate([90,0,0]) {
+                roundRect(size = [iphone5_width, iphone5_height, iphone5_depth],
+                    round = 9, center = true);
+            }
+        }
+
+        // The screen is really a cutout from the front of our holder, so we
+        // want it to extend a little further down thant he screen actually
+        // does.
+        //
+        translate(v = [0,-(wall_thickness + padding),(iphone5_screen_h/2)+(iphone5_screen_offset-(screen_cutout_h/2))] ) {
+            // translate(v = [0,0,0] ) {
+            cube([iphone5_screen_w, iphone5_depth+1,iphone5_screen_h + screen_cutout_h], center = true);
+        }
+        // The home button is mostly just in here for reference.
+        //
+        translate(v = [0,0,home_button_offset]) {
+            rotate([90,0,0]) {
+                cylinder( h = iphone5_depth+wall_thickness, r = home_button_r);
+            }
+        }
+        // The cutout is larger than the home button and we wantit to extend up
+        // to the bottom of the where the screen should be.
+        //
+        translate(v = [0,0,home_button_offset + 2]) {
+            rotate([90,0,0]) {
+                cylinder( h = iphone5_depth, r = home_button_r + 4);
+            }
+        }
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////
+//
 module iphone6_cutout(width, height, length, radius) {
     union() {
         iphone(width,length,height,radius);
@@ -103,8 +140,8 @@ module iphone_adapter() {
                     }
                 }
 
-                translate(v=[0,0,-25]) {
-                    cylinder(h = nb_h-5, r1 = 18, r2 = (block_front_w/2) + 12, $fn = 80);
+                translate(v=[0,0,0]) {
+                    cylinder(h = nb_h-10, r1 = 18, r2 = (block_front_w/2) + 12, $fn = 80);
                 }
                 difference() {
                     union() {
@@ -118,9 +155,13 @@ module iphone_adapter() {
                         }
                     }
 
+                    translate(v=[0,0,iphone_holder_zoff+1]) {
+                        iphone5_cutout();
+                    }
+
                     translate( v = [iphone_holder_xoff, iphone_holder_yoff,
                             iphone_holder_zoff-1.5]) {
-                        translate(v=[-iphone6_width/2,iphone6_height/2,2-23]) {
+                        translate(v=[-iphone6_width/2,iphone6_height/2,2]) {
                             rotate([90,0,0]) {
                                 iphone6_cutout(iphone6_width, iphone6_height,
                                     iphone6_length, iphone6_radius);
@@ -130,7 +171,7 @@ module iphone_adapter() {
                     // expose the back of the iphone for cooling and
                     // antenna exposure.
                     //
-                    translate( v = [0,5,64-20.5] ) {
+                    translate( v = [0,5,64] ) {
                         cube([55, 10, 40], true);
                     }
                 }
@@ -146,24 +187,24 @@ module iphone_adapter() {
 
         // And cut out the griffin lighting adapter
         //
-        translate(v=[0,0,2.3]) {
-            lightning_plug(20, 10.8, 6.4);
+        translate(v=[0,0,24.5]) {
+            lightning_plug(19.5, 10.8, 6.4);
         }
         translate(v=[0,0,-1]) {
             rotate([0,0,180]) {
-                lightning_cable_cutout(35, 1.7, 2.7);
+                lightning_cable_cutout(50, 1.7, 2.7);
             }
         }
 
         // and cut out rounded rects for the speaker and mic so we can
         // say "hey siri" while the iphone is plugged in.
         //
-        translate(v=[-16,-6,19.5]) {
+        translate(v=[-16,-6,42.5]) {
             rotate([0,90,0]) {
                 roundRect(size=[5, 15, speaker_width], round = 5/2, center = true);
             }
         }
-        translate(v=[16,-6,19.5]) {
+        translate(v=[16,-6,42.5]) {
             rotate([0,90,0]) {
                 roundRect(size=[5, 15, speaker_width], round = 5/2, center = true);
             }
