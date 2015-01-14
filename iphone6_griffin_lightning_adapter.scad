@@ -130,7 +130,7 @@ module iphone_adapter() {
                     // expose the back of the iphone for cooling and
                     // antenna exposure.
                     //
-                    translate( v = [0,5,64-23] ) {
+                    translate( v = [0,5,64-20.5] ) {
                         cube([55, 10, 40], true);
                     }
                 }
@@ -146,8 +146,8 @@ module iphone_adapter() {
 
         // And cut out the griffin lighting adapter
         //
-        translate(v=[0,0,2.5]) {
-            lightning_plug(18.7, 11, 6.5);
+        translate(v=[0,0,2.3]) {
+            lightning_plug(20, 10.8, 6.4);
         }
         translate(v=[0,0,-1]) {
             lightning_cable_cutout(35, 1.7, 2.7);
