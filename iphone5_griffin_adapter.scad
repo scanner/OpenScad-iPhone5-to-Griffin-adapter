@@ -132,7 +132,7 @@ module iphone_adapter() {
     }
 
      translate( v = [0, -((block_back_d/2)+wall_thickness),iphone_from_bottom_offset]) {
-        iphone5_cutout();
+         iphone5_cutout();
      }
      if (connector_test == false) {
          translate( v= [0,1.4,-6]) {
