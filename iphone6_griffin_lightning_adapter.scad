@@ -4,7 +4,7 @@
 // routed by itself as well as an audio plug to pull sound out of the iphone in
 // to the car stereo's AUX in.
 //
-v="1.0";
+v="1.1";
 
 use <Libs.scad>;
 include <common_elements.scad>;
@@ -36,8 +36,8 @@ module lightning_cable_cutout(height, cable_r, strain_r) {
     translate( v = [0,0,height/2] ) {
         union() {
             cylinder( h = height, r = strain_r, center = true, $fn = 16 );
-            translate( v = [0,-(height/2),0]) {
-                cube([cable_r*2, height, height], true);
+            translate( v = [0,-(10/2),0]) {
+                cube([cable_r*2, 10, height], true);
             }
         }
     }
@@ -150,7 +150,9 @@ module iphone_adapter() {
             lightning_plug(20, 10.8, 6.4);
         }
         translate(v=[0,0,-1]) {
-            lightning_cable_cutout(35, 1.7, 2.7);
+            rotate([0,0,180]) {
+                lightning_cable_cutout(35, 1.7, 2.7);
+            }
         }
 
         // and cut out rounded rects for the speaker and mic so we can
