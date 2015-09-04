@@ -28,6 +28,15 @@ tp_z_offset = 33;
 
 nb_h = (block_front_h-40) + tp_z_offset + tp_height;
 
+// If you put a dbrand skin on your iphone6 we need to make the cutout
+// just a little bit larger. Set this to '0' if you do not have a dbrand skin.
+//
+dbrand_thickness = 0.4;
+w_d = iphone6_width + (dbrand_thickness * 2);
+l_d = iphone6_length + dbrand_thickness;
+h_d = iphone6_height;
+r_d = iphone6_radius;
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // the cut out for the lightning cable.
@@ -95,18 +104,18 @@ module iphone5_cutout() {
 
 /////////////////////////////////////////////////////////////////////////////
 //
-module iphone6_cutout(width, height, length, radius) {
+module iphone6_cutout() {
     union() {
-        iphone(width,length,height,radius);
+        iphone(w_d,l_d,h_d,r_d);
 
         // screen projection forward goes here...
         //
-	translate([height / 2, (home_button_diameter * 1.5)-4, height - 7.6]) {
-            cube([width - height, 30, 20]);
+	translate([h_d / 2, (home_button_diameter * 1.5)-4, h_d - 7.6]) {
+            cube([iphone6_width - iphone6_height, 30, 20]);
         }
         // Home button cutout
         //
-        translate(v = [width/2,11,4]) {
+        translate(v = [w_d/2,11,4]) {
             rotate([0,0,0]) {
                 cylinder( h = iphone5_depth, r = home_button_r + 4);
             }
@@ -155,16 +164,16 @@ module iphone_adapter() {
                         }
                     }
 
-                    translate(v=[0,0,iphone_holder_zoff+1]) {
+                    translate(v=[0,0,iphone_holder_zoff+0.5]) {
                         iphone5_cutout();
                     }
 
-                    translate( v = [iphone_holder_xoff, iphone_holder_yoff,
+                    translate( v = [iphone_holder_xoff,
+                            iphone_holder_yoff,
                             iphone_holder_zoff-1.5]) {
-                        translate(v=[-iphone6_width/2,iphone6_height/2,2]) {
+                        translate(v=[-w_d/2, h_d/2, 2]) {
                             rotate([90,0,0]) {
-                                iphone6_cutout(iphone6_width, iphone6_height,
-                                    iphone6_length, iphone6_radius);
+                                iphone6_cutout();
                             }
                         }
                     }
@@ -177,6 +186,10 @@ module iphone_adapter() {
                 }
             }
         }
+
+        // Debugging code.. we skip this if we are just trying to make
+        // sure the connector fits properly
+        //
         if (connector_test == false) {
             union() {
                 translate( v= [0,11,-6]) {
