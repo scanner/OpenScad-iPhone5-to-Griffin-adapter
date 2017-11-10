@@ -7,6 +7,11 @@ iphone6_length = 138.1;
 iphone6_height = 7.6;
 iphone6_radius = 9.3;
 
+iphonex_width = 71.0;
+iphonex_length = 143.6;
+iphonex_height = 7.8;
+iphonex_radius = 9.3;
+
 dock_hitch_h = 21;
 pin30_adapter_h = 6;
 iphone5_depth = 8.1;
@@ -64,8 +69,8 @@ block_bottom_h = 25;
 // }
 block_front_h = 60;
 
-block_front_w = iphone6_width + (wall_thickness * 2);
-block_front_d = iphone6_height + (wall_thickness * 2);
+block_front_w = iphonex_width + (wall_thickness * 2);
+block_front_d = iphonex_height + (wall_thickness * 2);
 
 headphone_plug_top_r = 8.2 / 2;
 headphone_plug_hex_w = 9.2;

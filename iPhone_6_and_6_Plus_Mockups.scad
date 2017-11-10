@@ -57,6 +57,7 @@ home_button_depth = 0.5;
 lightning_width = 8.3;
 */
 
+// iPhone X
 
 
 
